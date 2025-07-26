@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/compoment/my_button.dart';
 import 'package:flutter_application_1/compoment/my_textfield.dart';
-import 'package:flutter_application_1/pages/forgot_password.dart';
-import 'package:flutter_application_1/pages/signup_page.dart';
+import 'package:flutter_application_1/pages/login_page.dart';
 
-class LoginPage extends StatelessWidget{
-  LoginPage({super.key});
+class ForgetPassword extends StatelessWidget{
+  ForgetPassword({super.key});
 
   //text editing controllers
   final usernameController = TextEditingController();
   final passwordController = TextEditingController();
-  
+  final phonenumController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,18 +29,7 @@ class LoginPage extends StatelessWidget{
             ),
 
             const SizedBox(height: 50,),
-          
-            //welcome back, you've been missed
-            Text(
-              '!خوش آمدید',
-              style: TextStyle(
-                color: Colors.grey[700],
-                fontSize: 16,
-              ),
-            ),
-
-            const SizedBox(height: 25,),
-          
+      
             //username textfield
             MyTextfield(
               contreller: usernameController,
@@ -48,47 +37,44 @@ class LoginPage extends StatelessWidget{
               obscureText: false,
             ),
 
-            const SizedBox(height: 10,),                  
+            const SizedBox(height: 10,),
+
+            //phone number textfield
+            MyTextfield(
+              contreller: phonenumController,
+              hintText: 'شماره تلفن همراه',
+              obscureText: false,
+            ),
+
+            const SizedBox(height: 10,),                    
           
             //password textfield
             MyTextfield(
               contreller: passwordController,
-              hintText: 'رمز عبور',
+              hintText: 'رمز عبور جدید',
               obscureText: true,
             ),
 
             const SizedBox(height: 10,),
-          
-           //forgot password button
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 25.0),
-              child: InkWell(
-                onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => ForgetPassword()));
-                },
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Text(
-                      'فراموشی رمز عبور',
-                      style: TextStyle(color: Colors.grey[600]),
-                      ),
-                  ],
-                ),
-              ),
+
+            //password textfield
+            MyTextfield(
+              contreller: passwordController,
+              hintText: 'تکرار رمز عبور جدید',
+              obscureText: true,
             ),
 
-            const SizedBox(height: 25,),
+            const SizedBox(height: 30,),
           
-            //sign in button 
+            //sign up button 
             MyButton(
-              text: 'ورود',
-              onTap: () {},
+              text: 'بازیابی رمز عبور',
+              onTap: () {
+              },
             ),
 
             const SizedBox(height: 100,),
-          
-            //not a member? register now
+
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -96,24 +82,19 @@ class LoginPage extends StatelessWidget{
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => SignupPage()),
+                      MaterialPageRoute(builder: (context) => LoginPage()),
                     );
                   },
                   child: Text(
-                    'ثبت نام',
+                    'ورود به حساب کاربری',
                     style: TextStyle(
                       color: Color.fromARGB(255, 110, 31, 25),
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                 ),
-                const SizedBox(width: 5),
-                Text(
-                  'عضو نیستید؟',
-                  style: TextStyle(color: Colors.grey[600]),
-                ),
               ],
-            ),
+            )
           ],
           ),
         ),
